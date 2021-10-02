@@ -35,6 +35,7 @@ namespace Zlodey
 
                 .Add(new WinSystem())
                 .Add(new LoseSystem())
+                .Add(new StartGameSystem())
                 .Add(new ChangeGameStateSystem())
                 .Add(new MonitorScreenSwitcherSystem())
                 .Add(new InteractSystem())

@@ -167,6 +167,7 @@ namespace Zlodey
                 var startTimeToDestruction = _staticData.StartTimeToDestruction;
                 var timeToDestruction =  Mathf.Clamp(startTimeToDestruction - time.DeltaTime,0, startTimeToDestruction);
                 _runtimeData.TimeToDestruction = timeToDestruction;
+                _runtimeData.TimeToDestructionNormalize =  timeToDestruction / startTimeToDestruction;
             }
         }
     }
@@ -212,9 +213,18 @@ namespace Zlodey
             {
                 var timeToDestruction = _runtimeData.TimeToDestruction;
                 var seconds = Mathf.Floor(timeToDestruction % 60);
-                var minuts = Mathf.Floor((timeToDestruction / 60 ) % 60);
-                var text = $"{minuts} : {seconds}";
-                _sceneData.MonitorUI.TimerScreen.TimerText.text = text;
+                var minutes = Mathf.Floor((timeToDestruction / 60 ) % 60);
+
+                var secondsText = seconds < 10 ? $"0{seconds}": $"{seconds}";
+                var minutesText = minutes < 10 ? $"0{minutes}" : $"{minutes}";
+                var timerText = $"{minutesText} : {secondsText}";
+                _sceneData.MonitorUI.TimerScreen.TimerText.text = timerText;
+
+                var procent = 100 - _runtimeData.TimeToDestructionNormalize;
+                var stableText = $"stable {Mathf.Floor(procent)}";
+                _sceneData.MonitorUI.TimerScreen.StableText.text = stableText;
+                _sceneData.MonitorUI.TimerScreen.StableSlider.maxValue = 100;
+                _sceneData.MonitorUI.TimerScreen.StableSlider.value = procent;
             }
         }
     }

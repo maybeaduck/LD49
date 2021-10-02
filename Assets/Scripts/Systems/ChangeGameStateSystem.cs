@@ -30,7 +30,6 @@ namespace Zlodey
                         _ui.GameScreen.Show();
                         _ui.MenuScreen.Hide();
                         _runtimeData.StartLevelTime = Time.time;
-                        _world.NewEntity().Get<StartGameEvent>();
                         break;
 
                     case GameState.Win:

@@ -72,6 +72,9 @@ namespace Zlodey
             //cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            //start game
+            _world.NewEntity().Get<StartGameEvent>();
         }
     }
 }
