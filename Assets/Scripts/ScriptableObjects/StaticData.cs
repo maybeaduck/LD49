@@ -10,8 +10,12 @@ namespace Zlodey
         [Header("Props")]
         public Levels Levels;
         public ObjectPoolController ObjectPooler;
+
         [Header("Prefabs")]
         public AudioSource AudioSourcePrefab;
         public UI UIPrefab;
+
+        [Header("Input")]
+        public float MouseSensitivity = 1f;
     }
 }

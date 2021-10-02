@@ -7,5 +7,6 @@ namespace Zlodey
     {
         public float Speed;
         public float Gravity;
+        public float JumpSpeed;
     }
 }

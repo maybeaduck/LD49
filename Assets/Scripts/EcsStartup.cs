@@ -14,7 +14,7 @@ namespace Zlodey
 
         public StaticData _config;
         public SceneData _scene;
-        private RuntimeData _runtime = new RuntimeData();
+        public RuntimeData _runtime = new RuntimeData();
         void Start()
         {
             _world = new EcsWorld();
@@ -39,7 +39,14 @@ namespace Zlodey
 
                 .Add(new InputSystem())
                 .Add(new PlayerInputSystem())
+                .Add(new PlayerSpeedSystem())
                 .Add(new PlayerMoveSystem())
+                .Add(new PlayerJumpSystem())
+                .Add(new PlayerRotateSystem())
+
+                .Add(new MoveCameraToPlayerSystem())
+
+                .OneFrame<JumpFlag>()
 
                 .Inject(_runtime)
                 .Inject(_config)

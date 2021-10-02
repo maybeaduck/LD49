@@ -10,6 +10,7 @@ namespace Zlodey
         public EcsEntity Entity;
         public CharacterController Controller;
         public PlayerData Data;
+        public Transform Head;
 
         private IEnumerator Start()
         {
@@ -23,6 +24,8 @@ namespace Zlodey
                 Speed = Data.Speed,
                 Gravity = Data.Gravity,
             };
+
+            Service<RuntimeData>.Get().PlayerEntity = Entity;
         }
     }
 }

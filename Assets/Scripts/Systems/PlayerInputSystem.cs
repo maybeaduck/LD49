@@ -14,11 +14,17 @@ namespace Zlodey
                 ref var player = ref _filter.Get1(item).Player;
                 ref var direction = ref _filter.Get2(item).Direction;
 
-                var directionX = Input.GetAxis("Horizontal");
-                var directionY = Input.GetAxis("Vertical");
+                direction = _runtimeData.Direction;
 
-                direction.x = directionX;
-                direction.y = directionY;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    entity.Get<JumpFlag>();
+                }
+                
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    entity.Get<SprintFlag>();
+                }
             }
         }
     }

@@ -49,6 +49,19 @@ namespace Zlodey
             else if(Progress.CurentSound == 1){
                 base._runtimeData.SoundOn = true;
             }
+
+
+            //camera
+            var cameraRig = Object.FindObjectOfType<CameraRig>();
+            if (cameraRig)
+            {
+                _sceneData.CameraRig = cameraRig;
+                _runtimeData.MainCamera = _sceneData.CameraRig.Camera;
+            }
+
+            //cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
