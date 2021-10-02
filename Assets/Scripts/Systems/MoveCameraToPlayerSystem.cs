@@ -17,10 +17,16 @@ namespace Zlodey
                 var cameraRig = _sceneData.CameraRig;
                 cameraRig.transform.position = player.Head.position;
 
-                //rotation
+                //rotation horizontal
                 var rotation = cameraRig.Rotation.eulerAngles;
                 rotation.y = player.transform.rotation.eulerAngles.y;
                 cameraRig.Rotation.rotation = Quaternion.Euler(rotation);
+
+                //rotation vertical
+                var rotationY = _runtimeData.RotationYRaw;
+                var cameraRotation = cameraRig.Camera.transform.rotation.eulerAngles;
+                cameraRotation.x -= rotationY;
+                cameraRig.Camera.transform.rotation = Quaternion.Euler(cameraRotation);
             }
         }
     } 
