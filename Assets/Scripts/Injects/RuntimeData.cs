@@ -30,5 +30,6 @@ namespace Zlodey
 
         [Header("Other")]
         public float UnstableValue;
+       // public Interacateble[] AvailableInteracatebleObjects;
     }
 }
