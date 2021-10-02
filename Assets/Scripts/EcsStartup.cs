@@ -36,7 +36,9 @@ namespace Zlodey
                 .Add(new WinSystem())
                 .Add(new LoseSystem())
                 .Add(new ChangeGameStateSystem())
-
+                .Add(new InteractSystem())
+                
+                
                 .Add(new InputSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new PlayerSpeedSystem())
@@ -48,7 +50,7 @@ namespace Zlodey
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()
-
+                .OneFrame<InteractEvent>()
                 .Inject(_runtime)
                 .Inject(_config)
                 .Inject(_scene)

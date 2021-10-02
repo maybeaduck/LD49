@@ -18,6 +18,7 @@ namespace Zlodey
             var verticalButton = Input.GetAxisRaw("Vertical");
             var horizontalButton = Input.GetAxisRaw("Horizontal");
             _runtimeData.Direction = new Vector2(horizontalButton, verticalButton);
+            
         }
     }
 }

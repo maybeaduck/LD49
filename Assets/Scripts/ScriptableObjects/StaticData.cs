@@ -17,5 +17,7 @@ namespace Zlodey
 
         [Header("Input")]
         public float MouseSensitivity = 1f;
+
+        public float distanceToInteract;
     }
 }
