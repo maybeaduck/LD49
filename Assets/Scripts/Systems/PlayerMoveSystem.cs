@@ -253,7 +253,7 @@ namespace Zlodey
                 var timerText = $"{minutesText} : {secondsText}";
                 _sceneData.MonitorUI.TimerScreen.TimerText.text = timerText;
 
-                var procent = 100 - _runtimeData.TimeToDestructionNormalize;
+                var procent = Mathf.Clamp(_runtimeData.TimeToDestructionNormalize * 100, 0, 100);
                 var stableText = $"stable {Mathf.Floor(procent)}";
                 _sceneData.MonitorUI.TimerScreen.StableText.text = stableText;
                 _sceneData.MonitorUI.TimerScreen.StableSlider.maxValue = 100;
