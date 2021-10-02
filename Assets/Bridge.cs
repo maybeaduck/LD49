@@ -8,5 +8,5 @@ using DinoFracture;
 public class Bridge : MonoBehaviour
 {
     public DistructionState TargetDistructionState;
-    public CustomPreFracturedGeometry FracturedGeometry;
+    public PreFracturedGeometry FracturedGeometry;
 }
