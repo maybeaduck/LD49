@@ -219,12 +219,12 @@ namespace Zlodey
                         {
                             bridge.FracturedGeometry.Fracture();
                         }
-
-                        var poolfx = _sceneData.PoolFX.Phase1FX;
-                        foreach (var fx in poolfx)
-                        {
-                            fx.Play();  
-                        }
+                        //
+                        // var poolfx = _sceneData.PoolFX.Phase1FX;
+                        // foreach (var fx in poolfx)
+                        // {
+                        //     fx.Play();  
+                        // }
 
                         break;
                     case DistructionState.Phase2:
