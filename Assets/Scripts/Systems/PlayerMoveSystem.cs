@@ -139,7 +139,19 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 ref var entity = ref _filter.GetEntity(item);
-                ref var time = ref _filter.Get1(item).Time;
+
+            }
+        }
+    }
+    
+    public class DistructionSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
 
 
             }
