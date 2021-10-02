@@ -8,5 +8,6 @@ namespace Zlodey
 
         public Studio Studio;
         public MonitorUI MonitorUI;
+        public PoolFX PoolFX;
     }
 }
