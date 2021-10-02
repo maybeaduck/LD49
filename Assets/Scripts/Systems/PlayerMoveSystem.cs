@@ -110,8 +110,10 @@ namespace Zlodey
             {
                 ref var entity = ref _filter.GetEntity(item);
                 ref var time = ref _filter.Get1(item).Time;
-
-                time -= Time.deltaTime;
+                ref var second = ref _filter.Get1(item).Second;
+                time += Time.deltaTime;
+                second = time % 60f;
+                
             }
         }
     }

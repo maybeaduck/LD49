@@ -38,6 +38,11 @@ namespace Zlodey
                 .Add(new ChangeGameStateSystem())
                 .Add(new InteractSystem())
                 
+                //REACTOR
+                .Add(new ReactorControlSystem())
+                
+                
+                
                 
                 .Add(new InputSystem())
                 .Add(new PlayerInputSystem())
@@ -82,6 +87,19 @@ namespace Zlodey
                 _systems = null;
                 _world.Destroy();
                 _world = null;
+            }
+        }
+    }
+
+    internal class ReactorControlSystem : IEcsRunSystem
+    {
+        private EcsFilter<ReactorData,TimeComponent> _reactor;
+        public void Run()
+        {
+            foreach (var i in _reactor)
+            {
+                var second = _reactor.Get2(i).Second;
+                Debug.Log(second);
             }
         }
     }
