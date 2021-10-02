@@ -59,6 +59,13 @@ namespace Zlodey
                 _runtimeData.MainCamera = _sceneData.CameraRig.Camera;
             }
 
+            //monitorUI
+            var monitorUI = Object.FindObjectOfType<MonitorUI>();
+            if (monitorUI)
+            {
+                _sceneData.MonitorUI = monitorUI;
+            }
+
             //cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

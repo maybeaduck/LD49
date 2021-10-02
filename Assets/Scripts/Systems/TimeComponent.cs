@@ -2,6 +2,7 @@
 {
     internal struct TimeComponent
     {
-        public float Time;
+        public float StartTime;
+        public float DeltaTime;
     }
 }
