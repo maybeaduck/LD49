@@ -109,11 +109,9 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 ref var entity = ref _filter.GetEntity(item);
-                ref var time = ref _filter.Get1(item).Time;
-                ref var second = ref _filter.Get1(item).Second;
-                time += Time.deltaTime;
-                second = time % 60f;
-                
+                ref var time = ref _filter.Get1(item);
+
+                time.DeltaTime = Time.time - time.StartTime;
             }
         }
     }
@@ -126,7 +124,6 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 ref var entity = ref _filter.GetEntity(item);
-                ref var time = ref _filter.Get1(item).Time;
 
 
             }
@@ -141,10 +138,178 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 ref var entity = ref _filter.GetEntity(item);
-                ref var time = ref _filter.Get1(item).Time;
-
 
             }
         }
     }
+    
+    public class DistructionSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<SelfDestructionComponent, TimeComponent> _timeFilter;
+        private EcsFilter<FirstTriggerEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+                _world.NewEntity().Get<ChangeDistructionStateEvent>().State = DistructionState.Phase1;
+                var selfDestruction = _world.NewEntity();
+                    selfDestruction.Get<SelfDestructionComponent>();
+                    selfDestruction.Get<TimeComponent>().StartTime = Time.time;
+            }
+
+            foreach (var item in _timeFilter)
+            {
+                ref var entity = ref _timeFilter.GetEntity(item);
+                var time = _timeFilter.Get2(item);
+                var startTimeToDestruction = _staticData.StartTimeToDestruction;
+                var timeToDestruction =  Mathf.Clamp(startTimeToDestruction - time.DeltaTime,0, startTimeToDestruction);
+                _runtimeData.TimeToDestruction = timeToDestruction;
+                _runtimeData.TimeToDestructionNormalize =  timeToDestruction / startTimeToDestruction;
+            }
+        }
+    }
+    
+    public class ChangeDistructionStateSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<ChangeDistructionStateEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        break;
+                    case DistructionState.Phase1:
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                _runtimeData.CurrentDistructionState = state;
+                entity.Destroy();
+            }
+        }
+    }
+    
+    public class CheckDistructionStateSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<ChangeDistructionStateEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        break;
+                    case DistructionState.Phase1:
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                _runtimeData.CurrentDistructionState = state;
+                entity.Destroy();
+            }
+        }
+    }
+    public class TimerUISystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<SelfDestructionComponent, TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                var timeToDestruction = _runtimeData.TimeToDestruction;
+                var seconds = Mathf.Floor(timeToDestruction % 60);
+                var minutes = Mathf.Floor((timeToDestruction / 60 ) % 60);
+
+                var secondsText = seconds < 10 ? $"0{seconds}": $"{seconds}";
+                var minutesText = minutes < 10 ? $"0{minutes}" : $"{minutes}";
+                var timerText = $"{minutesText} : {secondsText}";
+                _sceneData.MonitorUI.TimerScreen.TimerText.text = timerText;
+
+                var procent = 100 - _runtimeData.TimeToDestructionNormalize;
+                var stableText = $"stable {Mathf.Floor(procent)}";
+                _sceneData.MonitorUI.TimerScreen.StableText.text = stableText;
+                _sceneData.MonitorUI.TimerScreen.StableSlider.maxValue = 100;
+                _sceneData.MonitorUI.TimerScreen.StableSlider.value = procent;
+            }
+        }
+    }
+    
+    public class StartDistructionSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<FirstTriggerEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+            }
+        }
+    }
+    
+    public class MonitorScreenSwitcherSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<MonitorScreenSwitchEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                var monitorUI = _sceneData.MonitorUI;
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        monitorUI.TimerScreen.Hide();
+                        monitorUI.WarningScreen.Hide();
+                        monitorUI.WelcomScreen.Show();
+                        break;
+                    case DistructionState.Phase1:
+                        monitorUI.TimerScreen.Show();
+                        monitorUI.WarningScreen.Show();
+                        monitorUI.WelcomScreen.Hide();
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                entity.Destroy();
+            }
+        }
+    } 
 }

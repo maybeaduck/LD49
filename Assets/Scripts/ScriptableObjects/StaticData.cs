@@ -18,6 +18,11 @@ namespace Zlodey
         [Header("Input")]
         public float MouseSensitivity = 1f;
 
+        [Header("Timers")]
+        public float StartTimeToDestruction = 240f;
+        public float StableToPhase2 = .5f;
+        public float StableToPhase3 = .25f;
+
         public float distanceToInteract;
     }
 }

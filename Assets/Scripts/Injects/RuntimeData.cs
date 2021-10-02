@@ -17,6 +17,8 @@ namespace Zlodey
         [Header("Timers")]
         public float StartLevelTime;
         public float EndLevelTime;
+        public float TimeToDestruction;
+        public float TimeToDestructionNormalize;
 
         [Header("Input")]
         public Vector2 Direction;
@@ -30,5 +32,7 @@ namespace Zlodey
 
         [Header("Other")]
         public float UnstableValue;
+        public DistructionState CurrentDistructionState;
+       // public Interacateble[] AvailableInteracatebleObjects;
     }
 }

@@ -8,10 +8,6 @@ namespace Zlodey
 {
     public class InitializeSystem : Injects, IEcsInitSystem
     {
-        private SceneData _sceneData;
-        private RuntimeData _runtimeData;
-        private EcsWorld _world;
-        private UI _ui;
         public void Init()
         {
             // AudioSource Instantiate
@@ -59,9 +55,26 @@ namespace Zlodey
                 _runtimeData.MainCamera = _sceneData.CameraRig.Camera;
             }
 
+            //monitorUI
+            var monitorUI = Object.FindObjectOfType<MonitorUI>();
+            if (monitorUI)
+            {
+                _sceneData.MonitorUI = monitorUI;
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Start;
+            }
+
+            var studio = Object.FindObjectOfType<Studio>();
+            if (studio)
+            {
+                _sceneData.Studio = studio;
+            }
+
             //cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            //start game
+            _world.NewEntity().Get<StartGameEvent>();
         }
     }
 }

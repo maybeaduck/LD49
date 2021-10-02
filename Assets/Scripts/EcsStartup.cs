@@ -35,14 +35,10 @@ namespace Zlodey
 
                 .Add(new WinSystem())
                 .Add(new LoseSystem())
+                .Add(new StartGameSystem())
                 .Add(new ChangeGameStateSystem())
+                .Add(new MonitorScreenSwitcherSystem())
                 .Add(new InteractSystem())
-                
-                //REACTOR
-                .Add(new ReactorControlSystem())
-                
-                
-                
                 
                 .Add(new InputSystem())
                 .Add(new PlayerInputSystem())
@@ -53,10 +49,17 @@ namespace Zlodey
 
                 .Add(new MoveCameraToPlayerSystem())
                 .Add(new TimerSystem())
+                .Add(new UnstableSystem())
+                .Add(new DistructionSystem())
+                .Add(new ReactorSystem())
+                .Add(new StartDistructionSystem())
+                .Add(new TimerUISystem())
+                .Add(new ChangeDistructionStateSystem())
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()
                 .OneFrame<InteractEvent>()
+                .OneFrame<FirstTriggerEvent>()
                 .Inject(_runtime)
                 .Inject(_config)
                 .Inject(_scene)
@@ -87,19 +90,6 @@ namespace Zlodey
                 _systems = null;
                 _world.Destroy();
                 _world = null;
-            }
-        }
-    }
-
-    internal class ReactorControlSystem : IEcsRunSystem
-    {
-        private EcsFilter<ReactorData,TimeComponent> _reactor;
-        public void Run()
-        {
-            foreach (var i in _reactor)
-            {
-                var second = _reactor.Get2(i).Second;
-                Debug.Log(second);
             }
         }
     }
