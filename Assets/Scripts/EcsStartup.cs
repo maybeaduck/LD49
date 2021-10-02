@@ -47,6 +47,7 @@ namespace Zlodey
                 .Add(new PlayerRotateSystem())
 
                 .Add(new MoveCameraToPlayerSystem())
+                .Add(new TimerSystem())
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()

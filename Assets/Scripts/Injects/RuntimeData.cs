@@ -27,5 +27,8 @@ namespace Zlodey
 
         [Header("Player")]
         public EcsEntity PlayerEntity;
+
+        [Header("Other")]
+        public float UnstableValue;
     }
 }

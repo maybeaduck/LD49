@@ -100,27 +100,49 @@ namespace Zlodey
             }
         }
     }
-    //public class PlayerCameraRotateSystem : Injects, IEcsRunSystem
-    //{
-    //    private EcsFilter<PlayerComponent, InputComponent> _filter;
-    //    private float _cameraRotationX;
-    //    public void Run()
-    //    {
-    //        foreach (var item in _filter)
-    //        {
-    //            ref var entity = ref _filter.GetEntity(item);
-    //            ref var player = ref _filter.Get1(item).Player;
-    //            ref var input = ref _filter.Get2(item);
+    
+    public class TimerSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                ref var time = ref _filter.Get1(item).Time;
 
-    //            var cameraRig = _sceneData.CameraRig;
-    //            var camera = cameraRig.Camera;
-    //            var min = cameraRig.Data.RotationMin;
-    //            var max = cameraRig.Data.RotationMax;
+                time -= Time.deltaTime;
+            }
+        }
+    }
+    
+    public class UnstableSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                ref var time = ref _filter.Get1(item).Time;
 
-    //            _cameraRotationX = Mathf.Clamp(_cameraRotationX - input.RotationYRaw, min, max);
-    //            var cameraRigRotation = new Vector3(_cameraRotationX, camera.rotation.eulerAngles.y, camera.rotation.eulerAngles.z);
-    //            camera.rotation = Quaternion.Euler(cameraRigRotation);
-    //        }
-    //    }
-    //}
+
+            }
+        }
+    }
+    
+    public class ReactorSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                ref var time = ref _filter.Get1(item).Time;
+
+
+            }
+        }
+    }
 }
