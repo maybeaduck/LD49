@@ -20,6 +20,8 @@ namespace Zlodey
 
         [Header("Timers")]
         public float StartTimeToDestruction = 240f;
+        public float StableToPhase2 = .5f;
+        public float StableToPhase3 = .25f;
 
         public float distanceToInteract;
     }

@@ -204,6 +204,39 @@ namespace Zlodey
             }
         }
     }
+    
+    public class CheckDistructionStateSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<ChangeDistructionStateEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        break;
+                    case DistructionState.Phase1:
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                _runtimeData.CurrentDistructionState = state;
+                entity.Destroy();
+            }
+        }
+    }
     public class TimerUISystem : Injects, IEcsRunSystem
     {
         private EcsFilter<SelfDestructionComponent, TimeComponent> _filter;

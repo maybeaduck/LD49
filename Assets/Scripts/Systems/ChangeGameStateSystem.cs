@@ -29,7 +29,6 @@ namespace Zlodey
                         _ui.LoseScreen.Hide();
                         _ui.GameScreen.Show();
                         _ui.MenuScreen.Hide();
-                        _runtimeData.StartLevelTime = Time.time;
                         break;
 
                     case GameState.Win:
