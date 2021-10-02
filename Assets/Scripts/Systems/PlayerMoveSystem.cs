@@ -35,7 +35,7 @@ namespace Zlodey
 
                 if (player.Controller.isGrounded == false)
                 {
-                    var playerYMin = -10f;
+                    var playerYMin = -50f;
                     if (player.transform.position.y <= playerYMin)
                     {
                         var point = _runtimeData.RespawnPoint;

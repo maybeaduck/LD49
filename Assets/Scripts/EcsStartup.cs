@@ -46,6 +46,7 @@ namespace Zlodey
                 .Add(new PlayerMoveSystem())
                 .Add(new PlayerJumpSystem())
                 .Add(new PlayerRotateSystem())
+                .Add(new PlayerRespawnSystem())
 
                 .Add(new MoveCameraToPlayerSystem())
                 .Add(new TimerSystem())
