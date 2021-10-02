@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zlodey;
 
 public class DoorTrigger : MonoBehaviour
 {
     public Door Door;
+    public ZoneType Type;
 
     private void OnTriggerEnter(Collider other)
     {

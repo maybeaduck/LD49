@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 5287674289092942099}
+  Type: 3
 --- !u!54 &5287674289092942098
 Rigidbody:
   m_ObjectHideFlags: 0

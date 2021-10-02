@@ -32,6 +32,7 @@ namespace Zlodey
 
         [Header("Other")]
         public float UnstableValue;
+        public Bridge[] AvailableBridges;
         public DistructionState CurrentDistructionState;
        // public Interacateble[] AvailableInteracatebleObjects;
     }
