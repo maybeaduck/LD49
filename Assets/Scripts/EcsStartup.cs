@@ -47,6 +47,7 @@ namespace Zlodey
                 .Add(new MoveCameraToPlayerSystem())
 
                 .OneFrame<JumpFlag>()
+                .OneFrame<SprintFlag>()
 
                 .Inject(_runtime)
                 .Inject(_config)
