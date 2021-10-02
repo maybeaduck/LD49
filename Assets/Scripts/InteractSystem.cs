@@ -1,3 +1,4 @@
+
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -37,9 +38,25 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 ref var buttonActor = ref _filter.Get2(item).actor;
-                buttonActor.active = !buttonActor.active;
-                buttonActor.animator.SetBool("Enable",buttonActor.active);
+                if (!buttonActor.Lock  )
+                {
+                    buttonActor.active = !buttonActor.active;
+                    buttonActor.animator.SetBool("Enable",buttonActor.active);
+                    _world.NewEntity().Get<FirstTriggerEvent>();    
+                }
+                else if(!buttonActor.entity.Has<LockFlag>())
+                {
+                    buttonActor.active = !buttonActor.active;
+                    buttonActor.animator.SetBool("Enable",buttonActor.active);
+                    _world.NewEntity().Get<FirstTriggerEvent>();
+                    buttonActor.entity.Get<LockFlag>();
+                }
+                
             }
         }
+    }
+
+    internal struct LockFlag
+    {
     }
 }

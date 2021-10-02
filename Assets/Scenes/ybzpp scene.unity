@@ -413,6 +413,7 @@ MonoBehaviour:
     RotationXRaw: 0
     RotationYRaw: 0
     UnstableValue: 0
+    AvailableBridges: []
     CurrentDistructionState: 0
 --- !u!4 &49763372
 Transform:
@@ -1215,6 +1216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDistructionState: 1
+  FracturedGeometry: {fileID: 0}
 --- !u!1 &145261742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10879,6 +10881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDistructionState: 1
+  FracturedGeometry: {fileID: 0}
 --- !u!1 &1343118244
 GameObject:
   m_ObjectHideFlags: 0
@@ -23079,7 +23082,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh192064
+  m_Name: pb_Mesh63156
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class ButtonActor : MonoBehaviour
 {
-    private EcsEntity entity;
+    public EcsEntity entity;
     public Animator animator;
     public bool active;
-
+    public bool Lock;
     void Start()
     {
         entity = GetComponent<Actor>().actor;
         entity.Get<ButtonData>().actor = this;
     }
-
+    
 
 }
 
