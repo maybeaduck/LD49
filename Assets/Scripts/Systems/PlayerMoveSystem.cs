@@ -145,6 +145,7 @@ namespace Zlodey
     
     public class DistructionSystem : Injects, IEcsRunSystem
     {
+        private EcsFilter<SelfDestructionComponent, TimeComponent> _timeFilter;
         private EcsFilter<FirstTriggerEvent> _filter;
         public void Run()
         {
@@ -159,6 +160,14 @@ namespace Zlodey
 
                 entity.Destroy();
             }
+
+            foreach (var item in _timeFilter)
+            {
+                ref var entity = ref _timeFilter.GetEntity(item);
+                var time = _timeFilter.Get2(item);
+                var timeToDestruction = time.StartTime - time.DeltaTime;
+                _runtimeData.TimeToDestruction = timeToDestruction;
+            }
         }
     }
     public class TimerUISystem : Injects, IEcsRunSystem
@@ -168,11 +177,11 @@ namespace Zlodey
         {
             foreach (var item in _filter)
             {
-                ref var entity = ref _filter.GetEntity(item);
-                var time = _filter.Get2(item);
-                Debug.Log($"DeltaTime {time.DeltaTime}");
-
-                entity.Destroy();
+                var timeToDestruction = _runtimeData.TimeToDestruction;
+                var seconds = timeToDestruction % 60;
+                var minuts = (timeToDestruction / 60 ) % 60;
+                var text = $"{minuts} : {seconds}";
+                _sceneData.MonitorUI.TimerScreen.TimerText.text = text;
             }
         }
     }

@@ -99,7 +99,7 @@ MonoBehaviour:
   Controller: {fileID: 3417479206601553722}
   Data: {fileID: 11400000, guid: fbf9060b46cba6c4b864667f90cc4936, type: 2}
   Head: {fileID: 5429503560340172601}
-  MeshRenderer: {fileID: 0}
+  MeshRenderer: {fileID: 3417479206601553724}
 --- !u!143 &3417479206601553722
 CharacterController:
   m_ObjectHideFlags: 0

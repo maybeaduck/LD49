@@ -17,6 +17,7 @@ namespace Zlodey
         [Header("Timers")]
         public float StartLevelTime;
         public float EndLevelTime;
+        public float TimeToDestruction;
 
         [Header("Input")]
         public Vector2 Direction;
