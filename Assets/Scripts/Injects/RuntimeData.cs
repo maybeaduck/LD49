@@ -29,6 +29,7 @@ namespace Zlodey
 
         [Header("Player")]
         public EcsEntity PlayerEntity;
+        public Transform RespawnPoint;
 
         [Header("Other")]
         public float UnstableValue;

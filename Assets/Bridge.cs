@@ -9,12 +9,4 @@ public class Bridge : MonoBehaviour
 {
     public DistructionState TargetDistructionState;
     public CustomPreFracturedGeometry FracturedGeometry;
-    public void Fracture()
-    {
-        var state = Service<RuntimeData>.Get().CurrentDistructionState;
-        if (state == TargetDistructionState)
-        {
-            FracturedGeometry.Fracture();
-        }
-    }
 }

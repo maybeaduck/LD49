@@ -55,6 +55,21 @@ namespace Zlodey
                 _runtimeData.MainCamera = _sceneData.CameraRig.Camera;
             }
 
+            //poolFX
+            var poolFX = Object.FindObjectOfType<PoolFX>();
+            if (poolFX)
+            {
+                _sceneData.PoolFX = poolFX;
+            }
+
+
+            //point
+            var point = Object.FindObjectOfType<RespawnPoint>();
+            if (point)
+            {
+                _runtimeData.RespawnPoint = point.transform;
+            }
+
             //monitorUI
             var monitorUI = Object.FindObjectOfType<MonitorUI>();
             if (monitorUI)

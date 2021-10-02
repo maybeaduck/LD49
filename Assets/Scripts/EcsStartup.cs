@@ -55,6 +55,7 @@ namespace Zlodey
                 .Add(new StartDistructionSystem())
                 .Add(new TimerUISystem())
                 .Add(new ChangeDistructionStateSystem())
+                .Add(new CheckDistructionStateSystem())
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()

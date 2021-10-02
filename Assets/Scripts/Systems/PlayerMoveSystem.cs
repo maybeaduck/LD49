@@ -22,6 +22,30 @@ namespace Zlodey
             }
         }
     }
+    
+    public class PlayerRespawnSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<PlayerComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                ref var player = ref _filter.Get1(item).Player;
+
+                if (player.Controller.isGrounded == false)
+                {
+                    var playerYMin = -10f;
+                    if (player.transform.position.y <= playerYMin)
+                    {
+                        var point = _runtimeData.RespawnPoint;
+                        player.transform.position = point.position;
+                    }
+                }
+
+            }
+        }
+    }
 
     public class PlayerJumpSystem : Injects, IEcsRunSystem
     {
@@ -154,6 +178,7 @@ namespace Zlodey
                 ref var entity = ref _filter.GetEntity(item);
 
                 _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+                _world.NewEntity().Get<CheckDistructionComponent>();
                 _world.NewEntity().Get<ChangeDistructionStateEvent>().State = DistructionState.Phase1;
                 var selfDestruction = _world.NewEntity();
                     selfDestruction.Get<SelfDestructionComponent>();
@@ -188,6 +213,19 @@ namespace Zlodey
                     case DistructionState.Start:
                         break;
                     case DistructionState.Phase1:
+
+                        var bridges = _runtimeData.AvailableBridges;
+                        foreach (var bridge in bridges)
+                        {
+                            bridge.FracturedGeometry.Fracture();
+                        }
+
+                        var poolfx = _sceneData.PoolFX.Phase1FX;
+                        foreach (var fx in poolfx)
+                        {
+                            fx.Play();  
+                        }
+
                         break;
                     case DistructionState.Phase2:
                         break;
@@ -207,28 +245,24 @@ namespace Zlodey
     
     public class CheckDistructionStateSystem : Injects, IEcsRunSystem
     {
+        private EcsFilter<CheckDistructionComponent> _filter;
         public void Run()
         {
             var destructionNormalize = _runtimeData.TimeToDestructionNormalize;
             var stableToPhase2 = _staticData.StableToPhase2;
             var stableToPhase3 = _staticData.StableToPhase3;
 
-            if (destructionNormalize < stableToPhase3)
+            foreach (var item in _filter)
             {
-                var state = DistructionState.Phase2;
 
-                //if (_runtimeData.CurrentDistructionState !=)
-                //{
-                //    _world.NewEntity().Get<ChangeDistructionStateEvent>().State = state;
-                //}
-                return;
-            }
-
-            if (destructionNormalize < stableToPhase2)
-            {
-                var state = DistructionState.Phase3;
-                _world.NewEntity().Get<ChangeDistructionStateEvent>().State = state;
-                return;
+                if (destructionNormalize < stableToPhase2)
+                {
+                    var state = destructionNormalize > stableToPhase3 ? DistructionState.Phase2 : DistructionState.Phase3;
+                    if (_runtimeData.CurrentDistructionState != state)
+                    {
+                        _world.NewEntity().Get<ChangeDistructionStateEvent>().State = state;
+                    }
+                }
             }
         }
     }
@@ -266,6 +300,7 @@ namespace Zlodey
             {
                 ref var entity = ref _filter.GetEntity(item);
 
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
                 _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
             }
         }
