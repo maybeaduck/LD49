@@ -145,15 +145,86 @@ namespace Zlodey
     
     public class DistructionSystem : Injects, IEcsRunSystem
     {
-        private EcsFilter<TimeComponent> _filter;
+        private EcsFilter<FirstTriggerEvent> _filter;
         public void Run()
         {
             foreach (var item in _filter)
             {
                 ref var entity = ref _filter.GetEntity(item);
 
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+                var selfDestruction = _world.NewEntity();
+                    selfDestruction.Get<SelfDestructionComponent>();
+                    selfDestruction.Get<TimeComponent>().StartTime = Time.time;
 
+                entity.Destroy();
             }
         }
     }
+    public class TimerUISystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<SelfDestructionComponent, TimeComponent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                var time = _filter.Get2(item);
+                Debug.Log($"DeltaTime {time.DeltaTime}");
+
+                entity.Destroy();
+            }
+        }
+    }
+    
+    public class StartDistructionSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<FirstTriggerEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+
+                entity.Destroy();
+            }
+        }
+    }
+    
+    public class MonitorScreenSwitcherSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<MonitorScreenSwitchEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+                var monitorUI = _sceneData.MonitorUI;
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        monitorUI.TimerScreen.Hide();
+                        monitorUI.WelcomScreen.Show();
+                        break;
+                    case DistructionState.Phase1:
+                        monitorUI.TimerScreen.Show();
+                        monitorUI.WelcomScreen.Hide();
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                entity.Destroy();
+            }
+        }
+    } 
 }

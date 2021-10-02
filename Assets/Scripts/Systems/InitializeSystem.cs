@@ -8,10 +8,6 @@ namespace Zlodey
 {
     public class InitializeSystem : Injects, IEcsInitSystem
     {
-        private SceneData _sceneData;
-        private RuntimeData _runtimeData;
-        private EcsWorld _world;
-        private UI _ui;
         public void Init()
         {
             // AudioSource Instantiate
@@ -64,6 +60,13 @@ namespace Zlodey
             if (monitorUI)
             {
                 _sceneData.MonitorUI = monitorUI;
+                _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Start;
+            }
+
+            var studio = Object.FindObjectOfType<Studio>();
+            if (studio)
+            {
+                _sceneData.Studio = studio;
             }
 
             //cursor

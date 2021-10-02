@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5482798909120299482}
   - component: {fileID: 3569289287192534621}
   - component: {fileID: 7304811711016859628}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4260945001862840669}
   - component: {fileID: 7173092513361725346}
   - component: {fileID: 7760327134328357995}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 1508440541443548812}
   - component: {fileID: 7428391019550775080}
   - component: {fileID: 680183563822356220}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7638781211590374322}
   - component: {fileID: 7494333570062541151}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: WelcomScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 4309988517332564085}
   - component: {fileID: 5808827575525102208}
   - component: {fileID: 8249980758571389664}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 5539673066174951394}
   - component: {fileID: 19196735350261117}
   - component: {fileID: 8446201396528777488}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 8811292151407094464}
   - component: {fileID: 5653440625887993553}
   - component: {fileID: 949902781136476228}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 8938195741306583008}
   - component: {fileID: 1076087905582058853}
   - component: {fileID: 377562008403601941}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1935139548212785074}
   - component: {fileID: 2931576655982512767}
   - component: {fileID: 8522166809818846474}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2877776191051034137}
   - component: {fileID: 4928908246881644973}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: WarningScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 8045518056068490184}
   - component: {fileID: 4625569427590033837}
   - component: {fileID: 4898439198143693227}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 1565944494878890975}
   - component: {fileID: 7393278929532564800}
   - component: {fileID: 3426915954316533034}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,7 +1276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2408937309338831736}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Phase3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 2479486906195529843}
   - component: {fileID: 8383421794887744912}
   - component: {fileID: 5911250620467627445}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: TimerScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,6 +1359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 0}
   Phases: []
+  Animator: {fileID: 0}
 --- !u!95 &5911250620467627445
 Animator:
   serializedVersion: 3
@@ -1391,7 +1392,7 @@ GameObject:
   - component: {fileID: 7691685437204089911}
   - component: {fileID: 7691685437204089912}
   - component: {fileID: 1826403130437142944}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: UI monitor ybzpp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1407,7 +1408,7 @@ RectTransform:
   m_GameObject: {fileID: 7691685437204089914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 7638781211590374322}
   - {fileID: 2479486906195529843}
@@ -1428,7 +1429,7 @@ Canvas:
   m_GameObject: {fileID: 7691685437204089914}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1462,7 +1463,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7691685437204089912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,7 +1504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7423577633846880049}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Phase2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463002764904516687}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Phase1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1579,7 +1580,7 @@ GameObject:
   - component: {fileID: 7982847180385655773}
   - component: {fileID: 5702320999780051011}
   - component: {fileID: 1975499610142462382}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

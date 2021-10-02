@@ -36,8 +36,8 @@ namespace Zlodey
                 .Add(new WinSystem())
                 .Add(new LoseSystem())
                 .Add(new ChangeGameStateSystem())
+                .Add(new MonitorScreenSwitcherSystem())
                 .Add(new InteractSystem())
-                
                 
                 .Add(new InputSystem())
                 .Add(new PlayerInputSystem())
@@ -48,6 +48,11 @@ namespace Zlodey
 
                 .Add(new MoveCameraToPlayerSystem())
                 .Add(new TimerSystem())
+                .Add(new UnstableSystem())
+                .Add(new DistructionSystem())
+                .Add(new ReactorSystem())
+                .Add(new StartDistructionSystem())
+                .Add(new TimerUISystem())
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()

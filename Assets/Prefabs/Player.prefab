@@ -99,6 +99,7 @@ MonoBehaviour:
   Controller: {fileID: 3417479206601553722}
   Data: {fileID: 11400000, guid: fbf9060b46cba6c4b864667f90cc4936, type: 2}
   Head: {fileID: 5429503560340172601}
+  MeshRenderer: {fileID: 0}
 --- !u!143 &3417479206601553722
 CharacterController:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -141,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8756533681735484263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3417479206601553726}
