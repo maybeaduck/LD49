@@ -8,6 +8,6 @@ namespace Zlodey
     {
         public TextMeshProUGUI TimerText;
         public GameObject[] Phases;
-        public Animator Animator;
+        public Animator WarningAnimator;
     }
 }

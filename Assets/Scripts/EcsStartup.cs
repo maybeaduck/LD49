@@ -53,10 +53,12 @@ namespace Zlodey
                 .Add(new ReactorSystem())
                 .Add(new StartDistructionSystem())
                 .Add(new TimerUISystem())
+                .Add(new ChangeDistructionStateSystem())
 
                 .OneFrame<JumpFlag>()
                 .OneFrame<SprintFlag>()
                 .OneFrame<InteractEvent>()
+                .OneFrame<FirstTriggerEvent>()
                 .Inject(_runtime)
                 .Inject(_config)
                 .Inject(_scene)

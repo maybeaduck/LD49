@@ -7,4 +7,5 @@ public class MonitorUI : MonoBehaviour
 {
     public TimerScreen TimerScreen;
     public WelcomeScreen WelcomScreen;
+    public WarningScreen WarningScreen;
 }

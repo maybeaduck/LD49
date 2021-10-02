@@ -569,12 +569,14 @@ MonoBehaviour:
     MainCamera: {fileID: 0}
     StartLevelTime: 0
     EndLevelTime: 0
+    TimeToDestruction: 0
     Direction: {x: 0, y: 0}
     RotationX: 0
     RotationY: 0
     RotationXRaw: 0
     RotationYRaw: 0
     UnstableValue: 0
+    CurrentDistructionState: 0
 --- !u!4 &49763372
 Transform:
   m_ObjectHideFlags: 0

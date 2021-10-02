@@ -111,7 +111,7 @@ namespace Zlodey
                 ref var entity = ref _filter.GetEntity(item);
                 ref var time = ref _filter.Get1(item);
 
-                time.DeltaTime = time.StartTime - Time.time;
+                time.DeltaTime = Time.time - time.StartTime;
             }
         }
     }
@@ -154,19 +154,52 @@ namespace Zlodey
                 ref var entity = ref _filter.GetEntity(item);
 
                 _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
+                _world.NewEntity().Get<ChangeDistructionStateEvent>().State = DistructionState.Phase1;
                 var selfDestruction = _world.NewEntity();
                     selfDestruction.Get<SelfDestructionComponent>();
                     selfDestruction.Get<TimeComponent>().StartTime = Time.time;
-
-                entity.Destroy();
             }
 
             foreach (var item in _timeFilter)
             {
                 ref var entity = ref _timeFilter.GetEntity(item);
                 var time = _timeFilter.Get2(item);
-                var timeToDestruction = time.StartTime - time.DeltaTime;
+                var startTimeToDestruction = _staticData.StartTimeToDestruction;
+                var timeToDestruction =  Mathf.Clamp(startTimeToDestruction - time.DeltaTime,0, startTimeToDestruction);
                 _runtimeData.TimeToDestruction = timeToDestruction;
+            }
+        }
+    }
+    
+    public class ChangeDistructionStateSystem : Injects, IEcsRunSystem
+    {
+        private EcsFilter<ChangeDistructionStateEvent> _filter;
+        public void Run()
+        {
+            foreach (var item in _filter)
+            {
+                ref var entity = ref _filter.GetEntity(item);
+
+
+                var state = _filter.Get1(item).State;
+                switch (state)
+                {
+                    case DistructionState.Start:
+                        break;
+                    case DistructionState.Phase1:
+                        break;
+                    case DistructionState.Phase2:
+                        break;
+                    case DistructionState.Phase3:
+                        break;
+                    case DistructionState.End:
+                        break;
+                    default:
+                        break;
+                }
+
+                _runtimeData.CurrentDistructionState = state;
+                entity.Destroy();
             }
         }
     }
@@ -178,8 +211,8 @@ namespace Zlodey
             foreach (var item in _filter)
             {
                 var timeToDestruction = _runtimeData.TimeToDestruction;
-                var seconds = timeToDestruction % 60;
-                var minuts = (timeToDestruction / 60 ) % 60;
+                var seconds = Mathf.Floor(timeToDestruction % 60);
+                var minuts = Mathf.Floor((timeToDestruction / 60 ) % 60);
                 var text = $"{minuts} : {seconds}";
                 _sceneData.MonitorUI.TimerScreen.TimerText.text = text;
             }
@@ -196,8 +229,6 @@ namespace Zlodey
                 ref var entity = ref _filter.GetEntity(item);
 
                 _world.NewEntity().Get<MonitorScreenSwitchEvent>().State = DistructionState.Phase1;
-
-                entity.Destroy();
             }
         }
     }
@@ -216,10 +247,12 @@ namespace Zlodey
                 {
                     case DistructionState.Start:
                         monitorUI.TimerScreen.Hide();
+                        monitorUI.WarningScreen.Hide();
                         monitorUI.WelcomScreen.Show();
                         break;
                     case DistructionState.Phase1:
                         monitorUI.TimerScreen.Show();
+                        monitorUI.WarningScreen.Show();
                         monitorUI.WelcomScreen.Hide();
                         break;
                     case DistructionState.Phase2:
