@@ -7,11 +7,6 @@ namespace Zlodey
     public class ChangeGameStateSystem : Injects, IEcsRunSystem
     {
         private EcsFilter<ChangeGameStateEvent> _eventFilter;
-        
-        private UI _ui;
-        private EcsWorld _world;
-        private RuntimeData _runtime;
-
         public void Run()
         {
             foreach (var index in _eventFilter)
@@ -19,42 +14,48 @@ namespace Zlodey
                 GameState newState = _eventFilter.Get1(index).State;
 
                 switch (newState)
-                { 
+                {
                     case GameState.BeforePlay:
-                    _ui.WinScreen.gameObject.SetActive(false);
-                    _ui.LoseScreen.gameObject.SetActive(false);
-                    _ui.GameScreen.gameObject.SetActive(false);
-                    Debug.Log("BeforePlay");
-                        
+                        Debug.Log("BeforePlay");
+                        _ui.WinScreen.Hide();
+                        _ui.LoseScreen.Hide();
+                        _ui.GameScreen.Hide();
+                        _ui.MenuScreen.Show();
                         break;
+
                     case GameState.Play:
                         Debug.Log("Play");
-                    _ui.WinScreen.gameObject.SetActive(false);
-                    _ui.LoseScreen.gameObject.SetActive(false);
-                    _ui.GameScreen.gameObject.SetActive(true);
-                    
-                    _world.NewEntity().Get<StartGameEvent>();
+                        _ui.WinScreen.Hide();
+                        _ui.LoseScreen.Hide();
+                        _ui.GameScreen.Show();
+                        _ui.MenuScreen.Hide();
+                        _runtimeData.StartLevelTime = Time.time;
+                        _world.NewEntity().Get<StartGameEvent>();
                         break;
+
                     case GameState.Win:
-                    Debug.Log("win");
-                    _ui.WinScreen.gameObject.SetActive(true);
-                    _ui.LoseScreen.gameObject.SetActive(false);
-                    _ui.GameScreen.gameObject.SetActive(false);
-                    break;
-                    case GameState.Lose:
-                    Debug.Log("lose");
-                    
-                    _ui.WinScreen.gameObject.SetActive(false);
-                    _ui.LoseScreen.gameObject.SetActive(true);
-                    _ui.GameScreen.gameObject.SetActive(false);
-                    
+                        Debug.Log("win");
+                        _ui.WinScreen.Show();
+                        _ui.LoseScreen.Hide();
+                        _ui.GameScreen.Hide();
+                        _ui.MenuScreen.Hide();
+                        _runtimeData.EndLevelTime = Time.time;
                         break;
+
+                    case GameState.Lose:
+                        Debug.Log("lose");
+                        _ui.WinScreen.Hide();
+                        _ui.LoseScreen.Show();
+                        _ui.GameScreen.Hide();
+                        _ui.MenuScreen.Hide();
+                        _runtimeData.EndLevelTime = Time.time;
+                        break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                _runtime.GameState = newState;
-
+                _runtimeData.GameState = newState;
                 _eventFilter.GetEntity(index).Destroy();
             }
         }
