@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d70acc4461434143ab91b59e3789b93, type: 2}
+  - {fileID: 2100000, guid: c6a7d593f84fc2241b38b75669e25be2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 5287674289092942097}
   - component: {fileID: 5287674289092942098}
   m_Layer: 0
-  m_Name: DoorPrefab
+  m_Name: Door Green Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -601,7 +601,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d70acc4461434143ab91b59e3789b93, type: 2}
+  - {fileID: 2100000, guid: c6a7d593f84fc2241b38b75669e25be2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

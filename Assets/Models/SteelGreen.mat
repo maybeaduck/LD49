@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DDarkBlue
-  m_Shader: {fileID: 4800000, guid: 8302807d5c3d34f85a1cfdcde75e1871, type: 3}
+  m_Name: SteelGreen
+  m_Shader: {fileID: 4800000, guid: 630b07f1142b0473fbb4a366f4ac637c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -67,10 +67,10 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RampSmooth: 0.1
-    - _RampThreshold: 0.5
-    - _RimMax: 1.55
-    - _RimMin: 0.109
+    - _RampSmooth: 0.9
+    - _RampThreshold: 0.1
+    - _RimMax: 1
+    - _RimMin: 0.5
     - _Smoothness: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecSmooth: 0.05
@@ -80,10 +80,10 @@ Material:
     - _ZWrite: 1
     - __dummy__: 0
     m_Colors:
-    - _Color: {r: 0.36858726, g: 0.3513633, b: 0.40665832, a: 1}
+    - _Color: {r: 0.32847932, g: 0.6886792, b: 0.21764861, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.785, g: 0.785, b: 0.785, a: 1}
-    - _RimColor: {r: 0.15566039, g: 1, b: 0.21090184, a: 0.6}
-    - _SColor: {r: 0.195, g: 0.195, b: 0.195, a: 1}
+    - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
+    - _SColor: {r: 0.5067662, g: 0.7075472, b: 0.45723566, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_BuildTextureStacks: []
