@@ -207,33 +207,28 @@ namespace Zlodey
     
     public class CheckDistructionStateSystem : Injects, IEcsRunSystem
     {
-        private EcsFilter<ChangeDistructionStateEvent> _filter;
         public void Run()
         {
-            foreach (var item in _filter)
+            var destructionNormalize = _runtimeData.TimeToDestructionNormalize;
+            var stableToPhase2 = _staticData.StableToPhase2;
+            var stableToPhase3 = _staticData.StableToPhase3;
+
+            if (destructionNormalize < stableToPhase3)
             {
-                ref var entity = ref _filter.GetEntity(item);
+                var state = DistructionState.Phase2;
 
+                //if (_runtimeData.CurrentDistructionState !=)
+                //{
+                //    _world.NewEntity().Get<ChangeDistructionStateEvent>().State = state;
+                //}
+                return;
+            }
 
-                var state = _filter.Get1(item).State;
-                switch (state)
-                {
-                    case DistructionState.Start:
-                        break;
-                    case DistructionState.Phase1:
-                        break;
-                    case DistructionState.Phase2:
-                        break;
-                    case DistructionState.Phase3:
-                        break;
-                    case DistructionState.End:
-                        break;
-                    default:
-                        break;
-                }
-
-                _runtimeData.CurrentDistructionState = state;
-                entity.Destroy();
+            if (destructionNormalize < stableToPhase2)
+            {
+                var state = DistructionState.Phase3;
+                _world.NewEntity().Get<ChangeDistructionStateEvent>().State = state;
+                return;
             }
         }
     }

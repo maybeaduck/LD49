@@ -69,6 +69,12 @@ namespace Zlodey
                 _sceneData.Studio = studio;
             }
 
+            var bridge = Object.FindObjectsOfType<Bridge>();
+            if (bridge.Length > 0)
+            {
+                _runtimeData.AvailableBridges = bridge;
+            }
+
             //cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
