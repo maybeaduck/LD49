@@ -14,7 +14,7 @@ namespace Zlodey
 
         public StaticData _config;
         public SceneData _scene;
-        private RuntimeData _runtime = new RuntimeData();
+        public RuntimeData _runtime = new RuntimeData();
         void Start()
         {
             _world = new EcsWorld();
@@ -23,12 +23,12 @@ namespace Zlodey
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_systems);
 #endif
-            UI _ui = GetOrSetUI(_config);
-
             Service<RuntimeData>.Set(_runtime);
             Service<EcsWorld>.Set(_world);
             Service<StaticData>.Set(_config);
             Service<SceneData>.Set(_scene);
+
+            UI _ui = GetOrSetUI(_config);
 
             _systems
                 .Add(new InitializeSystem())
@@ -36,7 +36,18 @@ namespace Zlodey
                 .Add(new WinSystem())
                 .Add(new LoseSystem())
                 .Add(new ChangeGameStateSystem())
-                
+
+                .Add(new InputSystem())
+                .Add(new PlayerInputSystem())
+                .Add(new PlayerSpeedSystem())
+                .Add(new PlayerMoveSystem())
+                .Add(new PlayerJumpSystem())
+                .Add(new PlayerRotateSystem())
+
+                .Add(new MoveCameraToPlayerSystem())
+
+                .OneFrame<JumpFlag>()
+                .OneFrame<SprintFlag>()
 
                 .Inject(_runtime)
                 .Inject(_config)
