@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
+using DG.Tweening;
 namespace Zlodey
 {
     public class PlayerMoveSystem : Injects, IEcsRunSystem
@@ -224,6 +225,12 @@ namespace Zlodey
                         foreach (var fx in poolfx)
                         {
                             fx.Play();  
+                        }
+
+                        var reactor = _sceneData.ReactorView;
+                        if (reactor)
+                        {
+                           // reactor.ReactorMain.transform.DOShakePosition(.1f, .1f);
                         }
 
                         break;

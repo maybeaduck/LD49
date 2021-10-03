@@ -84,6 +84,12 @@ namespace Zlodey
                 _sceneData.Studio = studio;
             }
 
+            var reactor = Object.FindObjectOfType<ReactorView>();
+            if (reactor)
+            {
+                _sceneData.ReactorView = reactor;
+            }
+
             var bridge = Object.FindObjectsOfType<Bridge>();
             if (bridge.Length > 0)
             {

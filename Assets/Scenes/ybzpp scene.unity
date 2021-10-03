@@ -189,6 +189,7 @@ MonoBehaviour:
   Studio: {fileID: 0}
   MonitorUI: {fileID: 0}
   PoolFX: {fileID: 0}
+  ReactorView: {fileID: 0}
 --- !u!114 &49763371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21374,6 +21375,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7025634561177075490, guid: 15fd0405cc49ee64e9c0bb091d673e32, type: 3}
   m_PrefabInstance: {fileID: 7352874152427095573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &919132149415371661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7695457437697631640, guid: 15fd0405cc49ee64e9c0bb091d673e32, type: 3}
+  m_PrefabInstance: {fileID: 7352874152427095573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &919132149415371662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149415371661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ffef56941ce434496f403666bbf187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReactorMain: {fileID: 0}
 --- !u!1001 &3417479205774723432
 PrefabInstance:
   m_ObjectHideFlags: 0

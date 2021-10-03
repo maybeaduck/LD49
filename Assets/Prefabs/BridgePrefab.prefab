@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDistructionState: 1
-  FracturedGeometry: {fileID: 0}
+  FracturedGeometry: {fileID: 4390152916989774219}
 --- !u!1 &9034818366910486749
 GameObject:
   m_ObjectHideFlags: 0
